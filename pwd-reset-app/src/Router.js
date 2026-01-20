@@ -5,6 +5,7 @@ import ResetConfirmation from './resetConfirmation'; // Your destination compone
 import EmailSend from "./EmailSend";
 import Login from './login';
 import PolicyReader from "./policyReader"
+import UserActions from "./selectAction"
 import LoginPage from "./loginPage"
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/login-page" element={<LoginPage />} />
             <Route path='/policy-reader' element={<PolicyReader />}/>
+            <Route path='/select-action' element={<UserActions />}/>
         </Routes>
     </BrowserRouter>
     );
