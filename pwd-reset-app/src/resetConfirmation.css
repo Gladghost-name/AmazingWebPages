@@ -1,0 +1,90 @@
+.confirmation-card {
+    text-align: center;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* 1. The Tick Icon Styling */
+.icon-wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Fixed height helps prevent layout shift when image swaps */
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+@media only screen and (min-width: 992px) {
+    .card {
+    width: 20%;
+    max-width: none;
+    padding: 24px;
+    margin: 20px auto;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .card {
+    width: 70%;
+    max-width: none;
+    padding: 24px;
+    margin: 20px auto;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .card {
+    width: 70%;
+    max-width: none;
+    padding: 24px;
+    margin: 20px auto;
+  }
+}
+
+/* 2. The Light Green Message Box */
+.success-message-box {
+    background-color: #d1fae5; /* Very light green (Tailwind's green-100) */
+    border: 1px solid #10b981; /* Darker green border */
+    border-radius: 8px;
+    padding: 20px;
+    color: #065f46; /* Dark green text for contrast */
+    margin-bottom: 20px;
+}
+
+.success-title {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #047857;
+}
+
+.success-subtext {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Optional: Ensure the button stands out */
+.buttonPrimary {
+    width: 100%;
+    padding: 12px;
+    background-color: #000; /* Or your brand color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.buttonPrimary:hover {
+    opacity: 0.9;
+}

@@ -1,0 +1,257 @@
+/* ==============================
+   1. Main Layout & Background
+   ============================== */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9; /* Your preferred light grey */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==============================
+2. The Card (With your Media Queries)
+============================== */
+
+.login-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Your preferred shadow */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 40px; 
+}
+
+/* Desktop */
+@media only screen and (min-width: 992px) {
+    .login-card {
+    width: 25%; /* Bumped slightly from 20% to prevent it being too narrow on laptops */
+    min-width: 350px; /* Safety min-width */
+    margin: 20px auto;
+    }
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .login-card {
+    width: 70%;
+    margin: 20px auto;
+    }
+}
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    .login-card {
+    width: 85%; /* Slightly wider than 70% for better mobile usage */
+    margin: 20px auto;
+    padding: 24px;
+    }
+}
+
+/* ==============================
+3. Typography & Headers
+============================== */
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.login-logo {
+    width: 100px;
+    height: auto;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h2 {
+    margin: 0 0 8px 0;
+    color: #1f2937;
+    font-size: 24px;
+}
+
+.login-header p {
+    margin: 0;
+    color: #666; /* Your preferred grey */
+    font-size: 14px;
+}
+
+/* ==============================
+4. Inputs & Icons
+============================== */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Matches your gap preference */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 13px; /* Your preference */
+    font-weight: 500;
+    color: #333;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* The Icon inside the input (left side) */
+.input-icon {
+    position: absolute;
+    left: 10px;
+    color: #888;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 10px 40px; /* Space for left icon and right eye */
+    border: 1px solid #ccc;
+    border-radius: 2px; /* Your square-ish preference */
+    font-size: 16px;
+    outline: none;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+
+/* Your Specific Pink Focus State */
+.input-wrapper input:focus {
+    outline: none;
+    border: 3px solid pink;
+    border-radius: 4px; /* Slight rounding on focus looks nice */
+}
+
+/* The Eye Icon (right side) */
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    z-index: 10;
+}
+
+.password-toggle:hover {
+    color: #333;
+}
+
+/* ==============================
+5. Actions (Remember Me / Forgot Pwd)
+============================== */
+
+.actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.forgot-password-link {
+    color: #ff009dff; /* Using your pink for links too? Or stick to blue? */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+/* ==============================
+6. Buttons & Loading
+============================== */
+
+.button-primary {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #ff009dff; /* Your Hot Pink */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.2s;
+}
+
+.button-primary:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.button-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Footer Section */
+.login-footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-footer a {
+    color: #ff009dff; /* Pink for Sign Up link */
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ==============================
+7. Loader Animation
+============================== */
+
+.loader-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loader {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #ffffff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
