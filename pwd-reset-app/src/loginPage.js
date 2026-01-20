@@ -12,7 +12,6 @@ const Login = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

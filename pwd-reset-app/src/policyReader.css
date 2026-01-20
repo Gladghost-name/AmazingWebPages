@@ -1,6 +1,7 @@
 /* ==============================
-   1. Main Layout & Background
-   ============================== */
+1. Main Layout & Background
+============================== */
+
 .container {
     display: flex;
     justify-content: center;
@@ -10,9 +11,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* ==============================
-2. The Card (Wrapper)
-============================== */
+
 .card {
     background: white;
     padding: 40px;
@@ -25,9 +24,7 @@
     box-sizing: border-box; /* Ensures padding doesn't break width */
 }
 
-/* ==============================
-3. The Grid List (The Fix)
-============================== */
+
 .list {
     display: grid;
     /* This creates the responsive snapping behavior */
@@ -36,9 +33,6 @@
     width: 100%;
 }
 
-/* ==============================
-4. Individual Items
-============================== */
 
 /* Wrapper for each item */
 .policy-list-item {
@@ -75,10 +69,6 @@
     width: 60%;
     background-color: #ededed;
 }
-
-/* ==============================
-5. Media Queries (Adjusting Container Width)
-============================== */
 
 /* Desktop */
 @media only screen and (min-width: 992px) {
