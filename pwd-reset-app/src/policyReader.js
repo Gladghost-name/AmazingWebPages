@@ -5,12 +5,7 @@ import logo from './assets/icons8-pdf-100.png';
 
 const PolicyReader = () => {
 
-    let key = ""
-
     const [data, setData] = useState(null);
-
-
-
     const [readStatus, setReadStatus] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -33,6 +28,7 @@ const PolicyReader = () => {
                     result["Policies"][i]["status"] = false
                 }
 
+                console.log(result)
                 setData(result);
                 setError(null);
             } catch (error) {
@@ -43,6 +39,7 @@ const PolicyReader = () => {
             }
         }
 
+        
         fetchData();
     }, []); // The empty array ensures this effect runs only once, on mount
 
@@ -53,6 +50,7 @@ const PolicyReader = () => {
     if (error) {
         return <p>Error: {error}</p>;
     }
+
 
 
 

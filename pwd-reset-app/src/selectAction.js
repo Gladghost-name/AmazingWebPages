@@ -1,22 +1,42 @@
 import React from "react";
 // We import the same CSS to keep the "Look and Feel" identical
-import "./selectAction.css"; 
+import "./selectAction.css";
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+
+
 export default function UserActions() {
+
+    const navigate = useNavigate();
+    // toast.success('Welcome back!', { theme: "colored" });
     
     // Handlers for the specific actions
     const handleReset = () => {
         console.log("Redirecting to Password Reset...");
-        // navigate('/reset-password');
+        navigate('/email-send');
     };
 
     const handlePolicy = () => {
         console.log("Redirecting to Policy Page...");
-        // navigate('/policy');
+        navigate('/policy-reader');
     };
 
     return (
         <div className="login-container">
             {/* We reuse 'login-card' for the white box styling */}
+            <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick={false}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored" 
+                />
+
             <div className="login-card">
                 <h2>Account Options</h2>
                 <p className="subtitle">How can we help you today?</p>
@@ -38,14 +58,10 @@ export default function UserActions() {
                 <button 
                     className="login-btn" 
                     onClick={handlePolicy}
-                    style={{ backgroundColor: "#6c757d" }} 
+                    style={{ backgroundColor: "#6c757d" }}
                 >
                     Read Policy
                 </button>
-
-                <p className="footer-text">
-                    Done here? <span style={{cursor: "pointer"}}>Go Back</span>
-                </p>
             </div>
         </div>
     );

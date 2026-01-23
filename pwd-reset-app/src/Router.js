@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PasswordReset from './PasswordReset';
 import ResetConfirmation from './resetConfirmation'; // Your destination component
 import EmailSend from "./EmailSend";
-import Login from './login';
+// import Login from './login';
 import PolicyReader from "./policyReader"
 import UserActions from "./selectAction"
 import LoginPage from "./loginPage"

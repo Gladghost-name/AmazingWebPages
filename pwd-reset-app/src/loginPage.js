@@ -21,29 +21,87 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-    // Basic Validation
-    if (!formData.email || !formData.password) {
-        toast.error('Please fill in all fields.', { theme: "colored" });
-        return;
+        // Basic Validation
+        if (!formData.email || !formData.password) {
+            toast.error('Please fill in all fields.', { theme: "colored" });
+            return;
+        }
+
+        setIsLoading(true);
+
+        // Simulate API Call
+        console.log("Login Payload:", { ...formData, rememberMe });
+
+        // Mock Success
+        console.log(formData)
+
+     const handleLogin = async () => {
+    try {
+        const response = await fetch('/api/ad/auth/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                // Added Content-Type so the server can read the JSON
+                'Content-Type': 'application/json' 
+                // Removed 'Access-Control-Allow-Origin'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        // Parse the JSON response from the server
+        const data = await response.json();
+        console.log(data)
+
+        
+
+        // Check for specific error status codes (e.g., 401 for Invalid Credentials)
+        if (!data.valid) {
+            console.log("Invalid credentials.")
+            toast.error("Invalid Credentials", {
+                position: 'top-center',
+                autoClose: 3000,
+                theme: "colored",
+            });
+            setIsLoading(false);
+        }else {
+            console.log(data.valid)
+            toast.success("Login Successful!");
+            
+            setIsLoading(false);
+            // toast.success('Welcome back!', { theme: "colored" });
+            setTimeout(() => {
+                navigate("/select-action");
+            }, 1500);
+            
+
+            // TODO: Save the authentication token from 'data' to localStorage or state here
+            localStorage.setItem('token', data.token);
+        }
+
+    } catch (error) {
+        // This runs only on network errors (e.g., API is offline)
+        console.error("Fetch error:", error);
+        toast.error("Connection to AD API failed. Check your network.");
     }
-
-
-
-    setIsLoading(true);
-
-    // Simulate API Call
-    console.log("Login Payload:", { ...formData, rememberMe });
-
-    // Mock Success
-    setIsLoading(false);
-    toast.success('Welcome back!', { theme: "colored" });
-    navigate("/policy-reader");
-
+};
+        handleLogin()
+       
 };
 
 return (
     <div className='login-container'>
-    <ToastContainer position="top-right" autoClose={4000} theme="colored" />
+    <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored" 
+    />
 
     <div className='login-card'>
         
@@ -104,20 +162,20 @@ return (
         </div>
 
           {/* Remember Me & Forgot Password */}
-        <div className="actions-row">
-        <label className="remember-me">
+        {/* <div className="actions-row"> */}
+        {/* <label className="remember-me">
             <input 
                 type="checkbox" 
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
             />
             <span>Remember me</span>
-        </label>
+        </label> */}
         
-        <Link to="/email-send" className="forgot-password-link">
-            Forgot Password?
-        </Link>
-        </div>
+            {/* <Link to="/email-send" className="forgot-password-link" >
+                Forgot Password?
+            </Link>
+        </div> */}
 
           {/* Submit Button */}
         <button type="submit" className='button-primary' disabled={isLoading}>
@@ -133,9 +191,9 @@ return (
         </form>
 
         {/* Footer / Sign Up */}
-        <div className="login-footer">
+        {/* <div className="login-footer">
             <p>Don't have an account? <Link to="/signup">Sign up now</Link></p>
-        </div>
+        </div> */}
 
         </div>
     </div>
