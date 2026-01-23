@@ -12,6 +12,7 @@ const Login = () => {
     const [rememberMe, setRememberMe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,17 +27,18 @@ const Login = () => {
         return;
     }
 
+
+
     setIsLoading(true);
 
     // Simulate API Call
     console.log("Login Payload:", { ...formData, rememberMe });
-    
-    setTimeout(() => {
-        // Mock Success
-        setIsLoading(false);
-        toast.success('Welcome back!', { theme: "colored" });
-        // navigate("/dashboard"); 
-    }, 2000); 
+
+    // Mock Success
+    setIsLoading(false);
+    toast.success('Welcome back!', { theme: "colored" });
+    navigate("/policy-reader");
+
 };
 
 return (

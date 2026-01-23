@@ -114,6 +114,21 @@
     cursor: pointer;
     transition: opacity 0.2s;
 }
+.button-secondary {
+    width: 128px;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #ff009dff;
+    color: white;
+    justify-content: center;
+    display: flex;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
 
 .button-primary:hover:not(:disabled) {
     opacity: 0.9;
