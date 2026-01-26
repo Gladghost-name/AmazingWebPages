@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
 import './policyReader.css'; // We will create this file below
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import logo from './assets/icons8-pdf-100.png';
 
 const PolicyReader = () => {
+
+    const navigate = useNavigate();
 
     const [data, setData] = useState(null);
     const [readStatus, setReadStatus] = useState(false);
@@ -13,46 +15,6 @@ const PolicyReader = () => {
     const [shown, setShown] = useState(false);
 
     const [iframedata, setiframedata] = useState({name: null, link: null,id: null});
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/policy/');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const result = await response.json();
-
-                for (let i = 0; i < result["Policies"].length; i++) {
-                    result["Policies"][i]["status"] = false
-                }
-
-                console.log(result)
-                setData(result);
-                setError(null);
-            } catch (error) {
-                setError(error.message);
-                setData(null);
-            } finally {
-                setIsLoading(false);
-            }
-        }
-
-        
-        fetchData();
-    }, []); // The empty array ensures this effect runs only once, on mount
-
-    if (isLoading) {
-        return <p>Loading data...</p>;
-    }
-
-    if (error) {
-        return <p>Error: {error}</p>;
-    }
-
-
-
 
     const checkIfRead = async (prop) => {
         try {
@@ -71,19 +33,83 @@ const PolicyReader = () => {
 
 
             const result = await response.json();
-            console.log(result);
-            data["Policies"][prop.index].status = result['status']
 
-
-            const new_data = data
-            new_data["Policies"][prop.index]["status"] = result["status"]
-            setData(new_data);
+            return result['status'];
 
         } catch (error) {
+            console.log(error)
             setReadStatus(false);
         }
 
     }
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/policy/');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const result = await response.json();
+
+            let read = false;
+            for (let i = 0; i < result["Policies"].length; i++) {
+                read = await checkIfRead({id:result["Policies"][i].id, user: localStorage.getItem('user')});
+                console.log(read);
+                result["Policies"][i]["status"] = read
+            }
+            console.log(result);
+            setData(result);
+            setError(null);
+
+        } catch (error) {
+            setError(error.message);
+            setData(null);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []); // The empty array ensures this effect runs only once, on mount
+
+    if (isLoading) {
+        return <p>Loading data...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
+
+    const createResponse = async (prop) => {
+        try {
+            const response = await fetch('http://localhost:3000/api/policy/getresponse',{
+                method: 'POST',
+                headers:{
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify({id: prop.id, user: prop.user})
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            fetchData()
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+
+    }
+
+
+
+
 
     const showFileContents = (data, index) => {
         console.log(data);
@@ -131,12 +157,11 @@ return (
                     display: "block",
                     marginLeft: "auto",
                     marginRight: "auto",
-
                 }}
 
             />
             <h2 style={{color:"white"}} >Click here to acknowledge you've read the policy. </h2>
-            <button className='button-secondary' onClick={() => checkIfRead({id:iframedata.id,user:"admin", index: iframedata.index})}>Acknowledge</button>
+            <button className='button-secondary' onClick={() => createResponse({id:iframedata.id,user: localStorage.getItem('user'), index: iframedata.index})}>Acknowledge</button>
         </div>}
         <div className='card'>
 

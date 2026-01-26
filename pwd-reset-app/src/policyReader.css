@@ -17,7 +17,6 @@
     padding: 40px;
     border-radius: 8px;
     /* Default width logic */
-    max-width: 400px; /* Optional: stops it from getting too huge on big screens */
     margin: 20px auto;
     text-align: center;
     box-sizing: border-box; /* Ensures padding doesn't break width */

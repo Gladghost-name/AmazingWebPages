@@ -5,14 +5,17 @@ import { IoEye, IoEyeOff, IoMailOutline, IoLockClosedOutline } from "react-icons
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const {login} = useAuth();
 
     const navigate = useNavigate();
+
 
     const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -64,7 +67,8 @@ const Login = () => {
             });
             setIsLoading(false);
         }else {
-            console.log(data.valid)
+            console.log(formData)
+            login(formData)
             toast.success("Login Successful!");
             
             setIsLoading(false);
@@ -75,6 +79,8 @@ const Login = () => {
             
 
             // TODO: Save the authentication token from 'data' to localStorage or state here
+            login()
+            localStorage.setItem('user',formData.email)
             localStorage.setItem('token', data.token);
         }
 
@@ -162,20 +168,20 @@ return (
         </div>
 
           {/* Remember Me & Forgot Password */}
-        {/* <div className="actions-row"> */}
-        {/* <label className="remember-me">
+        <div className="actions-row">
+        <label className="remember-me">
             <input 
                 type="checkbox" 
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
             />
             <span>Remember me</span>
-        </label> */}
+        </label>
         
-            {/* <Link to="/email-send" className="forgot-password-link" >
-                Forgot Password?
-            </Link>
-        </div> */}
+        <Link to="/email-send" className="forgot-password-link">
+            Forgot Password?
+        </Link>
+        </div>
 
           {/* Submit Button */}
         <button type="submit" className='button-primary' disabled={isLoading}>
@@ -191,9 +197,9 @@ return (
         </form>
 
         {/* Footer / Sign Up */}
-        {/* <div className="login-footer">
+        <div className="login-footer">
             <p>Don't have an account? <Link to="/signup">Sign up now</Link></p>
-        </div> */}
+        </div>
 
         </div>
     </div>

@@ -4,6 +4,7 @@ import PasswordReset from './PasswordReset';
 import ResetConfirmation from './resetConfirmation'; // Your destination component
 import EmailSend from "./EmailSend";
 // import Login from './login';
+import PrivateRoute from './PrivateRoute';
 import PolicyReader from "./policyReader"
 import UserActions from "./selectAction"
 import LoginPage from "./loginPage"
@@ -15,10 +16,11 @@ function App() {
             <Route path="/password-reset" element={<PasswordReset />} />
             <Route path="/reset-confirmation" element={<ResetConfirmation />} />
             <Route path="/email-send" element={<EmailSend />} />
-            {/*<Route path="/" element={<Login />} />*/}
             <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<Login />} />
             <Route path='/policy-reader' element={<PolicyReader />}/>
             <Route path='/select-action' element={<UserActions />}/>
+
         </Routes>
     </BrowserRouter>
     );
