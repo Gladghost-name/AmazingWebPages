@@ -1,73 +1,39 @@
+/* Page container */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f9f9f9;
 }
 
+/* Logo / top section */
 .top-div {
-    background-color: "red";
-    height: "80px";
+    height: 80px;
     background-image: url("./vdt-logo.png");
-    background-position-x: "50%";
-    background-position-y: "50%"
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-bottom: 20px;
 }
 
+/* Card */
 .card {
     background: white;
-    padding: 40px;
+    padding: 32px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 40%;
-    max-width: 400px;
+
+    width: 100%;
+    max-width: 360px;   /* controls card size */
+
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.top-div {
-    position: 'relative';
-    width: 100; 
-    left: '32%';
-    align-items: 'center';
-    display: 'flex';
-    justify-content: 'center';
-}
-
-/* Large screens */
-@media only screen and (min-width: 992px) {
-    .card {
-    width: 20%;
-    max-width: none;
-    padding: 24px;
-    margin: 20px auto;
-    }
-}
-
-/* Tablets */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .card {
-    width: 70%;
-    max-width: none;
-    padding: 24px;
-    margin: 20px auto;
-    }
-}
-
-/* Mobile */
-@media only screen and (max-width: 767px) {
-  .card {
-    width: 70%;
-    max-width: none;
-    padding: 24px;
-    margin: 20px auto;
-  }
-}
-
-
-
+/* Input group */
 .inputGroup {
     display: flex;
     flex-direction: column;
@@ -75,6 +41,7 @@
     gap: 5px;
 }
 
+/* Inputs */
 input {
     padding: 7px;
     border-radius: 6px;
@@ -84,10 +51,10 @@ input {
 }
 
 input:focus {
-    outline: none;
     border: 3px solid pink;
 }
 
+/* Primary button */
 .buttonPrimary {
     padding: 8px;
     background-color: #ff009dff;
@@ -99,6 +66,7 @@ input:focus {
     margin-top: 10px;
 }
 
+/* Secondary button */
 .buttonSecondary {
     background: none;
     border: none;
@@ -108,35 +76,41 @@ input:focus {
     margin-top: 10px;
 }
 
+/* Small label */
 .newPwdLabel {
-    font-size: 13px;  
+    font-size: 13px;
 }
 
-/* Spinner Animation Keyframes */
+/* Spinner animation */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-/* The Spinner Circle */
+/* Spinner */
 .loader {
-  border: 3px solid #f3f3f3; /* Light grey */
-  border-top: 3px solid #ffffff; /* White */
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  animation: spin 1s linear infinite;
-  display: inline-block;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #ffffff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
 }
 
-/* Style for disabled button during loading */
+/* Disabled button */
 .buttonPrimary:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; 
+    opacity: 0.7;
+    cursor: not-allowed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-
+/* Slightly wider on larger screens */
+@media (min-width: 768px) {
+    .card {
+        max-width: 400px;
+    }
+}

@@ -17,7 +17,7 @@ function App() {
             <Route path="/reset-confirmation" element={<ResetConfirmation />} />
             <Route path="/email-send" element={<EmailSend />} />
             <Route path="/" element={<LoginPage />} />
-            <Route path="/" element={<Login />} />
+            {/*<Route path="/" element={<Login />} />*/}
             <Route path='/policy-reader' element={<PolicyReader />}/>
             <Route path='/select-action' element={<UserActions />}/>
 

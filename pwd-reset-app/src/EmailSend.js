@@ -70,9 +70,7 @@ const PasswordReset = () => {
         />
 
         <div className='card'>
-        
-        {/* Company Logo */}
-        <div className='top-div'></div>
+
         <img
             src={logo}
             alt='VDT LOGO'
@@ -89,7 +87,7 @@ const PasswordReset = () => {
 
         {/* Headings */}
         <div>
-            <h2 style={{ margin: '0 0 1px 0'}}>Reset Password</h2>
+            <h2 style={{ margin: '0 0 1px 0'}}>Forgot Password</h2>
             <p>Please enter a valid email address associated with your account.</p>
         </div>
 
