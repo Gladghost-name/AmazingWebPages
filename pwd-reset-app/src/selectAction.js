@@ -13,7 +13,7 @@ export default function UserActions() {
     // Handlers for the specific actions
     const handleReset = () => {
         console.log("Redirecting to Password Reset...");
-        navigate('/email-send');
+        navigate('/password-reset');
     };
 
     const handlePolicy = () => {
@@ -50,7 +50,7 @@ export default function UserActions() {
                     onClick={handleReset}
                     style={{ marginBottom: "1rem" }} // Add spacing between buttons
                 >
-                    Reset Password
+                    Change Password
                 </button>
 
                 {/* Action 2: Read Policy */}

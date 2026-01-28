@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import './EmailSend.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Ensure CSS is imported
+import { render } from '@react-email/components';
+import { Resend } from 'resend';
 
 const PasswordReset = () => {
     const [email, setEmail] = useState('');
@@ -16,30 +18,29 @@ const PasswordReset = () => {
         // 1. Start Loading
         setIsLoading(true);
 
+        // async function sendEmail(from, to, subject, emailhtml) {
+        //     // 1. Render the component to HTML string
+        //     const emailHtml = await render(<VDTResetPassword />);
+
+        //     // 2. Send via your provider
+        //     await resend.emails.send({
+        //     from: from,
+        //     to: to,
+        //     subject: subject,
+        //     html: emailHtml,
+        //     });
+        // }
+
         // 2. Simulate API Call (wait 2 seconds)
         setTimeout(() => {
-            
-            // 3. Trigger Red Toast (Error style)
-            // Note: toast.error is red by default in React-Toastify
-            // toast.error('Unable to verify email. Redirecting anyway...', {
-            //     position: "top-right",
-            //     autoClose: 3000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            //     theme: "colored", // "colored" makes the whole box red, not just the bar
-            // });
-
-            
-
             // 4. Stop Loading and Navigate
             // We wait a slight moment so the user sees the toast before the page changes
-            setTimeout(() => {
-                setIsLoading(false);
-                // navigate('/mail-sent');
-                toast.success('Reset link sent to: ' + email + ". please check your mail.", {
+            // sendEmail()
+            setIsLoading(false);
+
+            // check if mail is valid
+            if (email !== "adaraademide@gmail.com"){
+                toast.error("Invalid Email: Enter a valid email to continue.", {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -49,9 +50,19 @@ const PasswordReset = () => {
                     progress: undefined,
                     theme: "colored",
                 });
-            }, 2000); 
-
-        }, 2000); // 2 second mock delay for the "sending" animation
+            }else{
+                toast.success('Reset link sent to: ' + email + ". please check your mail.", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            }
+        }, 1000); // 2 second mock delay for the "sending" animation
     }
     
     return (

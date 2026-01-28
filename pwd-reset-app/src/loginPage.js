@@ -61,7 +61,7 @@ const Login = () => {
         if (!data.valid) {
             console.log("Invalid credentials.")
             toast.error("Invalid Credentials", {
-                position: 'top-center',
+                position: 'top-right',
                 autoClose: 3000,
                 theme: "colored",
             });
