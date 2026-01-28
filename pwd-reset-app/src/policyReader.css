@@ -2,56 +2,70 @@
 1. Main Layout & Background
 ============================== */
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
     background-color: #dedddd;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* ==============================
+2. Main Card Wrapper
+============================== */
 
 .card {
     background: white;
     padding: 40px;
     border-radius: 8px;
-    /* Default width logic */
-    margin: 20px auto;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
-    box-sizing: border-box; /* Ensures padding doesn't break width */
 }
 
+/* ==============================
+3. Policy Grid Layout
+============================== */
 
 .list {
     display: grid;
-    /* This creates the responsive snapping behavior */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-    gap: 20px; /* Controls space between cards vertically and horizontally */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
     width: 100%;
+    margin-top: 20px;
 }
 
+/* ==============================
+4. Policy Cards
+============================== */
 
-/* Wrapper for each item */
-.policy-list-item {
-    display: flex;
-    flex-direction: column;
-}
-
-/* The actual card content */
 .policy-item {
-    /* Removed margins because 'gap' in .list handles spacing now */
-    padding: 30px; 
+    padding: 30px;
     background: white;
     border-radius: 8px;
+    border: 1px solid #eee;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Pushes button to bottom */
-    height: 100%; /* Ensures all cards in a row are same height */
-    border: 1px solid #eee; /* Adds subtle border definition */
+    justify-content: space-between;
+    height: 100%;
+    text-align: left;
 }
+
+/* ==============================
+5. Card Header & Links
+============================== */
 
 .header {
     display: flex;
@@ -63,22 +77,58 @@
 .policy-link {
     border: 1px solid rgb(208, 208, 208);
     border-radius: 10px;
-    padding: 5px;
-    width: 60%;
+    padding: 6px 10px;
+    width: fit-content;
     background-color: #ededed;
+    font-size: 14px;
 }
 
-/* Desktop */
-@media only screen and (min-width: 992px) {
-    .card {
-        width: 80%;
-    }
+/* ==============================
+6. Buttons
+============================== */
+
+.button-primary {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #ff009d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
 }
+
+.button-secondary {
+    width: 128px;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #ff009d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.button-primary:hover:not(:disabled),
+.button-secondary:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+/* ==============================
+7. Responsive Breakpoints
+============================== */
 
 /* Tablets */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (max-width: 991px) {
     .card {
-        width: 90%;
         padding: 30px;
     }
 }
@@ -86,48 +136,10 @@
 /* Mobile */
 @media only screen and (max-width: 767px) {
     .card {
-        width: 95%;
-        padding: 15px;
+        padding: 20px;
     }
-    
-    /* On very small screens, make grid 1 column */
+
     .list {
         grid-template-columns: 1fr;
     }
-}
-
-/* ==============================
-6. Buttons
-============================== */
-.button-primary {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    background-color: #ff009dff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-.button-secondary {
-    width: 128px;
-    padding: 12px;
-    margin-top: 15px;
-    background-color: #ff009dff;
-    color: white;
-    justify-content: center;
-    display: flex;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-
-.button-primary:hover:not(:disabled) {
-    opacity: 0.9;
 }
