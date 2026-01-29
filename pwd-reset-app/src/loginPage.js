@@ -38,13 +38,14 @@ const Login = () => {
 
      const handleLogin = async () => {
     try {
-        const response = await fetch('http://192.168.137.241:8080/api/ad/auth/login', {
+        const response = await fetch('/api/ad/auth/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 // Added Content-Type so the server can read the JSON
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json' ,
                 // Removed 'Access-Control-Allow-Origin'
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify(formData)
         });

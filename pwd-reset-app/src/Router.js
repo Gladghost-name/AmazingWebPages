@@ -12,7 +12,7 @@ function App() {
     return (
     <BrowserRouter>
         <Routes>
-            <Route path="/password-reset" element={<PasswordReset />} />
+            <Route path="/reset-password" element={<PasswordReset />} />
             <Route path="/reset-confirmation" element={<ResetConfirmation />} />
             <Route path="/email-send" element={<EmailSend />} />
             <Route path="/" element={<LoginPage />} />

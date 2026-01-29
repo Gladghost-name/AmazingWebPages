@@ -18,10 +18,12 @@ const PasswordReset = () => {
 
         try {
             // 2. Send the POST request
-            const response = await fetch('https://api.example.com/reset-password', {  // <--- Placeholder Endpoint
+            const response = await fetch('http://192.168.137.241:8080/api/ad/auth/request-reset', {  // <--- Placeholder Endpoint
                 method: 'POST',
                 headers: {
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify({ 
                     email: email 
