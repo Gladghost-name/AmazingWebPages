@@ -5,14 +5,12 @@ import { IoEye, IoEyeOff, IoMailOutline, IoLockClosedOutline } from "react-icons
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuth } from './AuthContext';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const {login} = useAuth();
 
     const navigate = useNavigate();
 
@@ -33,7 +31,7 @@ const Login = () => {
         setIsLoading(true);
 
         // Simulate API Call
-        console.log("Login Payload:", { ...formData, rememberMe });
+        console.log("Login Payload:", { ...formData });
 
         // Mock Success
         console.log(formData)
@@ -68,7 +66,6 @@ const Login = () => {
             setIsLoading(false);
         }else {
             console.log(formData)
-            login(formData)
             toast.success("Login Successful!");
             
             setIsLoading(false);
@@ -79,7 +76,6 @@ const Login = () => {
             
 
             // TODO: Save the authentication token from 'data' to localStorage or state here
-            login()
             localStorage.setItem('user',formData.email)
             localStorage.setItem('token', data.token);
         }
@@ -169,14 +165,6 @@ return (
 
           {/* Remember Me & Forgot Password */}
         <div className="actions-row">
-        <label className="remember-me">
-            <input 
-                type="checkbox" 
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-            />
-            <span>Remember me</span>
-        </label>
         
         <Link to="/email-send" className="forgot-password-link">
             Forgot Password?
@@ -195,12 +183,6 @@ return (
             )}
         </button>
         </form>
-
-        {/* Footer / Sign Up */}
-        <div className="login-footer">
-            <p>Don't have an account? <Link to="/signup">Sign up now</Link></p>
-        </div>
-
         </div>
     </div>
     );

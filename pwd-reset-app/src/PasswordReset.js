@@ -4,6 +4,7 @@ import './PasswordReset.css';
 import { IoEye, IoEyeOff } from "react-icons/io5"; 
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 const PasswordReset = () => {
@@ -17,6 +18,12 @@ const PasswordReset = () => {
 
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
 
   // Helper to determine style based on strength state
