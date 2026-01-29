@@ -13,7 +13,7 @@ export default function UserActions() {
     // Handlers for the specific actions
     const handleReset = () => {
         console.log("Redirecting to Password Reset...");
-        navigate('/password-reset');
+        navigate('/password-reset?token=' + localStorage.getItem("token"));
     };
 
     const handlePolicy = () => {

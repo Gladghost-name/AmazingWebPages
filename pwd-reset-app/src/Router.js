@@ -4,11 +4,9 @@ import PasswordReset from './PasswordReset';
 import ResetConfirmation from './resetConfirmation'; // Your destination component
 import EmailSend from "./EmailSend";
 // import Login from './login';
-import PrivateRoute from './PrivateRoute';
 import PolicyReader from "./policyReader"
 import UserActions from "./selectAction"
 import LoginPage from "./loginPage"
-import VDTResetPassword from "./resetPasswordEmail"
 
 function App() {
     return (
@@ -21,8 +19,6 @@ function App() {
             {/*<Route path="/" element={<Login />} />*/}
             <Route path='/policy-reader' element={<PolicyReader />}/>
             <Route path='/select-action' element={<UserActions />}/>
-            <Route path='/email-template' element={<VDTResetPassword />}/>
-
         </Routes>
     </BrowserRouter>
     );
