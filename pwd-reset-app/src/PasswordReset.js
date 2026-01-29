@@ -15,6 +15,9 @@ const PasswordReset = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+
 
   // Helper to determine style based on strength state
   const getStrengthStyles = (strength) => {
@@ -49,10 +52,8 @@ const PasswordReset = () => {
     setStrength(checkStrength(val));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    
 
     if (password !== confirmPassword) {
       toast.error('Passwords does not match.', {
@@ -68,13 +69,54 @@ const PasswordReset = () => {
       return;
     }
 
+    // 1. Start Loading
     setIsLoading(true);
-    console.log("Password reset payload:", { password });
-    // Add your backend API call here
-    setTimeout(() => {
+
+    try {
+        // 2. Send the POST request
+        const response = await fetch('https://api.example.com/confirm-reset', { // <--- Placeholder Endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                token: token,               // Ensure you have this variable defined (e.g., from URL params)
+                newPassword: password,
+                confirmPassword: confirmPassword 
+            }),
+        });
+
+        // 3. Check for Success (200 OK)
+        if (response.ok) {
+            // Success: Password changed
+            toast.success("Password reset successfully!", {
+                position: "top-right",
+                theme: "colored",
+            });
+
+            // Navigate ONLY if successful
+            navigate("/reset-confirmation");
+            
+        } else {
+            // Failure: Show error from server (or default message)
+            toast.error("Failed to reset password. Please try again or request a new link.", {
+                position: "top-right",
+                theme: "colored",
+            });
+        }
+
+    } catch (error) {
+        // Network/Connection Errors
+        console.error("Submission Error:", error);
+        toast.error("Network Error: Please check your connection.", {
+            position: "top-right",
+            theme: "colored",
+        });
+
+    } finally {
+        // 4. Stop Loading (always runs)
         setIsLoading(false);
-        navigate("/reset-confirmation")
-    }, 2000); 
+    }
   };
 
   return (

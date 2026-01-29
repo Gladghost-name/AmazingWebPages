@@ -1,16 +1,14 @@
 import logo from './vdt-logo.png';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './EmailSend.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Ensure CSS is imported
-import { render } from '@react-email/components';
-import { Resend } from 'resend';
 
 const PasswordReset = () => {
     const [email, setEmail] = useState('');
     const [isLoading, setIsLoading] = useState(false); // New state for loading
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -18,29 +16,22 @@ const PasswordReset = () => {
         // 1. Start Loading
         setIsLoading(true);
 
-        // async function sendEmail(from, to, subject, emailhtml) {
-        //     // 1. Render the component to HTML string
-        //     const emailHtml = await render(<VDTResetPassword />);
+        try {
+            // 2. Send the POST request
+            const response = await fetch('https://api.example.com/reset-password', {  // <--- Placeholder Endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    email: email 
+                }),
+            });
 
-        //     // 2. Send via your provider
-        //     await resend.emails.send({
-        //     from: from,
-        //     to: to,
-        //     subject: subject,
-        //     html: emailHtml,
-        //     });
-        // }
-
-        // 2. Simulate API Call (wait 2 seconds)
-        setTimeout(() => {
-            // 4. Stop Loading and Navigate
-            // We wait a slight moment so the user sees the toast before the page changes
-            // sendEmail()
-            setIsLoading(false);
-
-            // check if mail is valid
-            if (email !== "adaraademide@gmail.com"){
-                toast.error("Invalid Email: Enter a valid email to continue.", {
+            // 4. Handle Success or Failure based on Status Code
+            if (response.ok) {
+                // Success: 200-299 status code
+                toast.success(`Reset link sent to: ${email}. Please check your mail.`, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -50,19 +41,38 @@ const PasswordReset = () => {
                     progress: undefined,
                     theme: "colored",
                 });
-            }else{
-                toast.success('Reset link sent to: ' + email + ". please check your mail.", {
+                
+                // Optional: Navigate away or clear input after success
+                // navigate('/login'); 
+                
+            } else {
+                // Server Error: 400, 401, 500, etc.
+                // Use the error message from the server, or a default fallback
+                const errorMessage = "Invalid Email: Unable to process request.";
+                
+                toast.error(errorMessage, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
+
+        } catch (error) {
+            // Network Error: Internet down, server unreachable, etc.
+            console.error("Network Error:", error);
+            toast.error("Network Error: Please try again later.", {
                 position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
                 theme: "colored",
             });
-            }
-        }, 1000); // 2 second mock delay for the "sending" animation
+        } finally {
+            // 5. Stop Loading (runs whether request succeeded or failed)
+            setIsLoading(false);
+        }
     }
     
     return (
