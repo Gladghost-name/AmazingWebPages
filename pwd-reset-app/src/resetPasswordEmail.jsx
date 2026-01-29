@@ -45,7 +45,7 @@ const VDTResetPassword = () => {
                 </Heading>
 
                 <Text className="text-gray-700 text-[16px] leading-[24px]">
-                Hello <strong>{data.firstname} {data.lastname}</strong>,
+                Hello <strong>FirstName, LastName</strong>,
                 </Text>
                 
                 <Text className="text-gray-700 text-[16px] leading-[24px]">

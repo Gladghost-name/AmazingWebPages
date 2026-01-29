@@ -31,7 +31,6 @@ const PolicyReader = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-
             const result = await response.json();
 
             return result['status'];
@@ -103,13 +102,7 @@ const PolicyReader = () => {
             console.log(error)
         }
 
-
-
     }
-
-
-
-
 
     const showFileContents = (data, index) => {
         console.log(data);
@@ -158,16 +151,21 @@ return (
                     marginLeft: "auto",
                     marginRight: "auto",
                 }}
-
             />
             <h2 style={{color:"white"}} >Click here to acknowledge you've read the policy. </h2>
             <button className='button-secondary' onClick={() => createResponse({id:iframedata.id,user: localStorage.getItem('user'), index: iframedata.index})}>Acknowledge</button>
         </div>}
+        <div>
+            <button onClick={() => {
+                navigate("/")
+            }}>
+                Logout
+            </button>
+        </div>
         <div className='card'>
-
-    <div className='list'>
-        {data["Policies"].map((data, index) => (
-            <div key={data.id} className='policy-list-item'>
+            <div className='list'>
+                {data["Policies"].map((data, index) => (
+                    <div key={data.id} className='policy-list-item'>
                 <div className='policy-item'>
                     {/* Header */}
                     <div className="login-header">
@@ -179,15 +177,13 @@ return (
                             style={{ width: 60, objectFit: 'contain' }}
                         />
                     </div>
-
                     <button className='buttonPrimary' onClick={() => showFileContents(data, index)} disabled={data.status} >
                         {data.status ?  "Acknowledged" : defaultText}
                     </button>
                 </div>
+            </div>))}
             </div>
-        ))}
-    </div>
-</div>
+        </div>
     </div>
     );
 };

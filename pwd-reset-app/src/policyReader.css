@@ -2,16 +2,6 @@
 1. Main Layout & Background
 ============================== */
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background-color: #dedddd;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .container {
     display: flex;
     justify-content: center;
@@ -20,9 +10,6 @@ body {
     padding: 40px 20px;
 }
 
-/* ==============================
-2. Main Card Wrapper
-============================== */
 
 .card {
     background: white;
@@ -32,40 +19,35 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
 }
 
-/* ==============================
-3. Policy Grid Layout
-============================== */
 
 .list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     width: 100%;
-    margin-top: 20px;
 }
 
 /* ==============================
 4. Policy Cards
 ============================== */
 
+/* The actual card content */
 .policy-item {
-    padding: 30px;
+    /* Removed margins because 'gap' in .list handles spacing now */
+    padding: 30px; 
     background: white;
     border-radius: 8px;
-    border: 1px solid #eee;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
     text-align: left;
 }
-
-/* ==============================
-5. Card Header & Links
-============================== */
 
 .header {
     display: flex;
@@ -77,8 +59,8 @@ body {
 .policy-link {
     border: 1px solid rgb(208, 208, 208);
     border-radius: 10px;
-    padding: 6px 10px;
-    width: fit-content;
+    padding: 5px;
+    width: 60%;
     background-color: #ededed;
     font-size: 14px;
 }
@@ -86,60 +68,35 @@ body {
 /* ==============================
 6. Buttons
 ============================== */
-
 .button-primary {
     width: 100%;
     padding: 12px;
     margin-top: 15px;
-    background-color: #ff009d;
+    background-color: #ff009dff;
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s;
 }
-
 .button-secondary {
     width: 128px;
     padding: 12px;
     margin-top: 15px;
-    background-color: #ff009d;
+    background-color: #ff009dff;
     color: white;
-    display: flex;
     justify-content: center;
+    display: flex;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s;
 }
 
-.button-primary:hover:not(:disabled),
-.button-secondary:hover:not(:disabled) {
+.button-primary:hover:not(:disabled) {
     opacity: 0.9;
-}
-
-/* ==============================
-7. Responsive Breakpoints
-============================== */
-
-/* Tablets */
-@media only screen and (max-width: 991px) {
-    .card {
-        padding: 30px;
-    }
-}
-
-/* Mobile */
-@media only screen and (max-width: 767px) {
-    .card {
-        padding: 20px;
-    }
-
-    .list {
-        grid-template-columns: 1fr;
-    }
 }
