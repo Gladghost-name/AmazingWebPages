@@ -7,6 +7,8 @@ import EmailSend from "./EmailSend";
 import PolicyReader from "./policyReader"
 import UserActions from "./selectAction"
 import LoginPage from "./loginPage"
+import AdminLogin from "./AdminLoginPage"
+import PasswordChange from "./changepassword"
 
 function App() {
     return (
@@ -19,6 +21,8 @@ function App() {
             {/*<Route path="/" element={<Login />} />*/}
             <Route path='/policy-reader' element={<PolicyReader />}/>
             <Route path='/select-action' element={<UserActions />}/>
+            <Route path='/admin-login' element={<AdminLogin />}/>
+            <Route path='/change-password' element={<PasswordChange />}/>
         </Routes>
     </BrowserRouter>
     );

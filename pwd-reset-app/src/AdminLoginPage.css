@@ -1,0 +1,131 @@
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
+}
+
+/* The New Split Card */
+.admin-split-card {
+    background: white;
+    display: flex;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 1000px; /* Wider for split view */
+    min-height: 600px;
+    overflow: hidden; /* Clips the image to the border radius */
+}
+
+/* Form Section (Left) */
+.form-section {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Visual Section (Right) */
+.visual-section {
+    flex: 1.2;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+}
+
+/* Dark overlay to make text readable on the image */
+.visual-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    padding: 24px;
+    border-radius: 16px;
+    color: white;
+    width: 100%;
+}
+
+.visual-overlay h3 { margin: 0 0 8px 0; font-size: 22px; }
+.visual-overlay p { margin: 0; font-size: 14px; opacity: 0.9; }
+
+/* Admin Badge Style */
+.admin-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 0, 157, 0.1);
+    color: #ff009d;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+/* Shared Elements from previous style */
+.logo { width: 80px; margin-bottom: 20px; }
+.header-section h2 { font-size: 28px; margin: 0 0 10px 0; color: #1a202c; }
+.header-section p { color: #718096; margin-bottom: 30px; }
+
+.auth-form { display: flex; flex-direction: column; gap: 20px; }
+.input-group { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.input-group label { font-size: 14px; font-weight: 600; color: #4a5568; }
+
+.input-wrapper { position: relative; display: flex; align-items: center; }
+.input-icon { position: absolute; left: 14px; color: #a0aec0; }
+
+input {
+    width: 100%;
+    padding: 14px 14px 14px 46px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    border-color: #ff009d;
+    box-shadow: 0 0 0 4px rgba(255, 0, 157, 0.1);
+    outline: none;
+    background: white;
+}
+
+.password-toggle { position: absolute; right: 14px; background: none; border: none; color: #a0aec0; cursor: pointer; }
+
+.btn-submit {
+    margin-top: 10px;
+    padding: 16px;
+    background: #ff009d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover { background: #e6008d; transform: translateY(-2px); }
+
+/* Mobile Logic */
+@media (max-width: 900px) {
+    .visual-section { display: none; } /* Hide image on smaller tablets/phones */
+    .form-section { padding: 40px 20px; }
+    .admin-split-card { max-width: 450px; }
+}
+
+/* Spinner */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
