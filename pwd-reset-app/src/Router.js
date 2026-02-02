@@ -9,6 +9,8 @@ import UserActions from "./selectAction"
 import LoginPage from "./loginPage"
 import AdminLogin from "./AdminLoginPage"
 import PasswordChange from "./changepassword"
+import AdminPasswordChange from "./admin-changepassword"
+import AdminActions from "./admin-actions"
 
 function App() {
     return (
@@ -23,6 +25,8 @@ function App() {
             <Route path='/select-action' element={<UserActions />}/>
             <Route path='/admin-login' element={<AdminLogin />}/>
             <Route path='/change-password' element={<PasswordChange />}/>
+            <Route path="/admin-change-password" element={<AdminPasswordChange />}/>
+            <Route path="/admin-actions" element={<AdminActions />}/>
         </Routes>
     </BrowserRouter>
     );

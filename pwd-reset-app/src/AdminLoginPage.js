@@ -37,7 +37,7 @@ const AdminLogin = () => {
                 toast.success("Admin Access Granted!");
                 localStorage.setItem('user', formData.email);
                 localStorage.setItem('token', data.token);
-                setTimeout(() => navigate("/admin-dashboard"), 1500);
+                setTimeout(() => navigate("/admin-actions"), 1500);
             }
         } catch (error) {
             toast.error("Connection failed.");
