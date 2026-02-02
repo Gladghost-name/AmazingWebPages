@@ -14,9 +14,8 @@ const PasswordReset = () => {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get('token');
-  console.log(token);
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
 
     useEffect(() => {
         if (!token) {
@@ -57,57 +56,26 @@ const PasswordReset = () => {
             return;
         }
 
-    // 1. Start Loading
-    setIsLoading(true);
-
-    try {
-        // 2. Send the POST request
-        const response = await fetch('http://192.168.137.241:8080/api/ad/auth/reset-password', { // <--- Placeholder Endpoint
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({ 
-                token: token,               // Ensure you have this variable defined (e.g., from URL params)
-                newPassword: password,
-                confirmPassword: confirmPassword 
-            }),
-        });
-
-        // 3. Check for Success (200 OK)
-        if (response.ok) {
-            // Success: Password changed
-            toast.success("Password reset successfully!", {
-                position: "top-right",
-                theme: "colored",
+        setIsLoading(true);
+        try {
+            const response = await fetch('https://api.example.com/confirm-reset', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token, newPassword: password }),
             });
 
-            // Navigate ONLY if successful
-            navigate("/reset-confirmation");
-            
-        } else {
-            // Failure: Show error from server (or default message)
-            toast.error("Failed to reset password. Please try again or request a new link.", {
-                position: "top-right",
-                theme: "colored",
-            });
+            if (response.ok) {
+                toast.success("Password reset successfully!", { theme: "colored" });
+                setTimeout(() => navigate("/reset-confirmation"), 2000);
+            } else {
+                toast.error("Failed to reset password. Link may be expired.", { theme: "colored" });
+            }
+        } catch (error) {
+            toast.error("Network Error: Please try again.", { theme: "colored" });
+        } finally {
+            setIsLoading(false);
         }
-
-    } catch (error) {
-        // Network/Connection Errors
-        console.error("Submission Error:", error);
-        toast.error("Network Error: Please check your connection.", {
-            position: "top-right",
-            theme: "colored",
-        });
-
-    } finally {
-        // 4. Stop Loading (always runs)
-        setIsLoading(false);
-    }
-  };
+    };
 
     return (
         <div className='page-wrapper'>

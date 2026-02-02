@@ -26,24 +26,15 @@ const Login = () => {
 
         setIsLoading(true);
 
-        // Simulate API Call
-        console.log("Login Payload:", { ...formData });
-
-        // Mock Success
-        console.log(formData)
-
-     const handleLogin = async () => {
-    try {
-        const response = await fetch('http://192.168.137.241:8080/api/ad/auth/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                // Added Content-Type so the server can read the JSON
-                'Content-Type': 'application/json' 
-                // Removed 'Access-Control-Allow-Origin'
-            },
-            body: JSON.stringify(formData)
-        });
+        try {
+            const response = await fetch('http://192.168.137.241:8080/api/ad/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(formData)
+            });
 
             const data = await response.json();
 
