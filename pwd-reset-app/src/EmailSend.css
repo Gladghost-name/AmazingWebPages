@@ -1,116 +1,145 @@
-/* Page container */
-.container {
+/* Modern Reset & Base */
+.page-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f9f9f9;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Inter', -apple-system, sans-serif;
+    padding: 20px;
 }
 
-/* Logo / top section */
-.top-div {
-    height: 80px;
-    background-image: url("./vdt-logo.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    margin-bottom: 20px;
-}
-
-/* Card */
-.card {
-    background: white;
-    padding: 32px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-
+/* The Card - Glassmorphism style */
+.auth-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     width: 100%;
-    max-width: 360px;   /* controls card size */
-
+    max-width: 420px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
-/* Input group */
-.inputGroup {
+/* Logo Styling */
+.logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+/* Typography */
+.header-section h2 {
+    color: #1a202c;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+}
+
+.header-section p {
+    color: #718096;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 32px;
+}
+
+/* Form Layout */
+.reset-form {
     display: flex;
     flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
     text-align: left;
-    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-/* Inputs */
+.input-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
 input {
-    padding: 7px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    outline: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    background: #f8fafc;
 }
 
 input:focus {
-    border: 3px solid pink;
+    border-color: #6366f1;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    outline: none;
 }
 
-/* Primary button */
-.buttonPrimary {
-    padding: 8px;
+/* Button Styling */
+.btn-submit {
+    padding: 14px;
     background-color: #ff009dff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 600;
+    transition: background 0.2s ease;
     margin-top: 10px;
 }
 
-/* Secondary button */
-.buttonSecondary {
+.btn-submit:hover:not(:disabled) {
+    background-color: rgb(225, 0, 139);
+}
+
+.btn-submit:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+/* Secondary Button */
+.btn-back {
     background: none;
     border: none;
-    color: #007bff;
+    color: #6366f1;
+    font-weight: 500;
+    font-size: 14px;
     cursor: pointer;
+    margin-top: 24px;
+}
+
+.btn-back:hover {
     text-decoration: underline;
-    margin-top: 10px;
 }
 
-/* Small label */
-.newPwdLabel {
-    font-size: 13px;
-}
-
-/* Spinner animation */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Spinner */
-.loader {
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #ffffff;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    animation: spin 1s linear infinite;
-    display: inline-block;
-}
-
-/* Disabled button */
-.buttonPrimary:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+/* Loading States */
+.loader-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 12px;
 }
 
-/* Slightly wider on larger screens */
-@media (min-width: 768px) {
-    .card {
-        max-width: 400px;
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 30px 20px;
     }
 }
